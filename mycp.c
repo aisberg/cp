@@ -56,19 +56,19 @@ void copyDir( char *path1, char *path2 )
     
     if ( !dir1 )
     {
-        printf ("Cannot open file '%s'\n", path1);
+        printf ("ERROR file '%s'\n", path1);
         exit(1);
     }
     
     if ( mkdir( path2, 0777 ) < 0 )
     {
-        printf("Cannot make directory '%s'\n", path2);
+        printf("ERROR DIR '%s'\n", path2);
         exit(1);
     }
     
     while ( ( entry = readdir( dir1 ) ) != NULL )
     {
-        if ( entry->d_name[0] == '.')
+        if ( entry->d_name == "." || entry->d_name == "..")
             continue;
         
         strncpy( newpath1, path1, PATH_MAX );
